@@ -42,23 +42,8 @@ The project focuses on modern UI/UX principles, performance, and responsiveness 
 
 ---
 
-## Screenshots
 
-Add screenshots of the application here.
 
-### Landing Page
-
-![Landing Page](screenshots/home.png)
-
-### Download Interface
-
-![Download Interface](screenshots/download.png)
-
-### Music Library
-
-![Library](screenshots/library.png)
-
----
 
 ## Technology Stack
 
@@ -213,9 +198,6 @@ Push to your fork
 Open a Pull Request
 ```
 
-Please ensure code quality and maintain consistency with the existing project structure.
-
----
 
 ## Author
 
