@@ -226,8 +226,7 @@ Full Stack Web Developer
 GitHub:
 https://github.com/Shubhamdev21
 
-LinkedIn:
-(Add your LinkedIn profile)
+
 
 ---
 
