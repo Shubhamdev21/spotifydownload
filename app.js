@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize Lucide icons
+  
   lucide.createIcons();
 
-  // State Variables
+
   const apiKey = '66485b34e8msh519020444ce23fep16d523jsn9e13e28bca91';
   let downloadHistory = JSON.parse(localStorage.getItem('spoti_download_history')) || [];
   let isDownloading = false;
 
-  // DOM Elements
+
   const spotifyUrlInput = document.getElementById('spotifyUrl');
   const dropBtn = document.getElementById('dropBtn');
   const btnText = document.getElementById('btnText');
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const toastContainer = document.getElementById('toastContainer');
 
-  // Circular progress configuration
+ 
   const radius = circleElement.r.baseVal.value;
   const circumference = 2 * Math.PI * radius;
   circleElement.style.strokeDasharray = `${circumference} ${circumference}`;
@@ -43,14 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let activeTrackData = null; // Store fetched track details
 
-  // Initialization
+  
   updateLibraryUI();
 
-  // Event Listeners
+
   dropBtn.addEventListener('click', handleDropTrack);
   downloadBtn.addEventListener('click', startPremiumDownload);
 
-  // Toast Alerts system
+ 
   function showToast(message, type = 'success') {
     const toast = document.createElement('div');
     toast.className = `toast ${type === 'error' ? 'error' : ''}`;
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3500);
   }
 
-  // Formatter Duration
+
   function formatDuration(duration) {
     if (!duration) return 'N/A';
     let seconds = Math.floor(duration > 10000 ? duration / 1000 : duration);
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return /^(https?:\/\/)?(open\.spotify\.com\/track\/)([a-zA-Z0-9]+)(\?.*)?$/.test(url.trim());
   }
 
-  // Fetch track meta
+
   async function handleDropTrack() {
     const url = spotifyUrlInput.value.trim();
 
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     albumArt.src = trackInfo.cover || 'https://images.unsplash.com/photo-1614680376593-902f74fa0d41?q=80&w=200&auto=format&fit=crop';
     trackMeta.textContent = trackInfo.duration ? `Duration: ${formatDuration(trackInfo.duration)}` : 'Duration: N/A';
 
-    // Reset button states
+   
     downloadBtn.style.display = 'flex';
     downloadBtn.disabled = false;
     downloadBtn.innerHTML = '<i data-lucide="download" style="width: 18px; height: 18px;"></i><span>Download MP3</span>';
@@ -160,14 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
 
-  // Circular progress controller
+ 
   function setProgress(percent) {
     const offset = circumference - (percent / 100) * circumference;
     circleElement.style.strokeDashoffset = offset;
     circleProgressPercent.textContent = `${Math.round(percent)}%`;
   }
 
-  // Real-time circular downloading queue process
+ 
   async function startPremiumDownload() {
     if (!activeTrackData || isDownloading) return;
 
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     circleProgressContainer.style.display = 'flex';
     trackCard.classList.add('spinning');
 
-    // Add active queue card in sidebar
+    
     queueCard.style.display = 'block';
     queueContainer.innerHTML = `
       <div class="queue-card" id="activeQueueItem">
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileName = `${activeTrackData.title} - ${activeTrackData.artist}.mp3`;
 
     try {
-      // Try high-fidelity direct blob fetch first (tracks actual network progress if CORS allowed)
+      
       const response = await fetch(downloadUrl);
       if (!response.ok) throw new Error('CORS block or server down');
 
@@ -218,18 +218,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // Convert downloaded chunks into a local file blob
+     
       const blob = new Blob(chunks, { type: 'audio/mpeg' });
       const blobUrl = URL.createObjectURL(blob);
 
-      // Trigger instant direct page download
+     
       triggerLocalDownload(blobUrl, fileName);
       finalizeDownload();
 
     } catch (e) {
       console.warn("Direct blob download failed (expected CORS restriction). Falling back to premium simulated progress + hidden iframe trigger.", e);
       
-      // Fallback: smooth premium simulated progress ring
+  
       let progress = 0;
       const interval = setInterval(() => {
         progress += Math.random() * 10 + 4;
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
           updateProgressUI(100);
 
           setTimeout(() => {
-            // Trigger download via hidden iframe to completely prevent opening a new tab
+    
             triggerIframeDownload(downloadUrl);
             finalizeDownload();
           }, 500);
@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(iframe);
     setTimeout(() => {
       document.body.removeChild(iframe);
-    }, 60000); // Clean up after download triggers
+    }, 60000); 
   }
 
   function finalizeDownload() {
@@ -287,17 +287,17 @@ document.addEventListener('DOMContentLoaded', () => {
     isDownloading = false;
     trackCard.classList.remove('spinning');
 
-    // Switch downloadBtn back to checkmark
+   
     circleProgressContainer.style.display = 'none';
     downloadBtn.style.display = 'flex';
     downloadBtn.innerHTML = '<i data-lucide="check" style="color: var(--spotify-green); width: 18px; height: 18px;"></i><span>Downloaded!</span>';
 
-    // Move from active queue to library list
+ 
     queueCard.style.display = 'none';
     saveToLibrary(activeTrackData);
   }
 
-  // Save to Library list
+
   function saveToLibrary(trackInfo) {
     const id = trackInfo.title + trackInfo.artist;
     if (downloadHistory.some(item => (item.title + item.artist) === id)) {
@@ -331,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     emptyHistory.style.display = 'none';
 
-    // Clear previous items
+  
     Array.from(libraryScroller.children).forEach(child => {
       if (child !== emptyHistory) child.remove();
     });

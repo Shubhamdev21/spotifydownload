@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SpotiDrop - Premium Spotify Track Downloader</title>
+  <title>SpotiDrop Spotify Track Downloader</title>
   <meta name="description" content="Download high-quality Spotify tracks instantly using SpotiDrop. The most modern, sleek, and high-fidelity client-side Spotify downloader.">
   <link rel="stylesheet" href="style.css?v=2.1">
-  <!-- Lucide Icons CDN -->
+ 
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
-  <!-- Decorative Background Elements -->
+
   <div class="bg-mesh">
     <div class="mesh-node-1"></div>
     <div class="mesh-node-2"></div>
     <div class="mesh-node-3"></div>
   </div>
 
-  <!-- Premium Header -->
+
   <header>
     <div class="logo-group">
       <div class="brand-icon">
@@ -28,9 +28,8 @@
     </div>
   </header>
 
-  <!-- Dashboard Main Grid -->
   <main>
-    <!-- Left Engine Column -->
+
     <div class="hero-content">
       <h1 class="title-glow">Drop your link.<br>Get your <span>Music.</span></h1>
       <p class="subtitle-muted">
@@ -38,7 +37,7 @@
       </p>
       <br>
 
-      <!-- Glassmorphic Drop Card -->
+      
       <div class="premium-card">
         <div class="input-container">
           <label class="label-lux" for="spotifyUrl">Spotify Track URL</label>
@@ -60,7 +59,7 @@
           <span class="spinner" id="btnSpinner"></span>
         </button>
 
-        <!-- Skeleton Loading Presentation -->
+      
         <div class="result-card-container" id="skeletonLoader">
           <div class="result-card-premium">
             <div class="shimmer-bg shimmer-art"></div>
@@ -71,7 +70,7 @@
           </div>
         </div>
 
-        <!-- Dynamic Success Track Card -->
+       
         <div class="result-card-container" id="trackResult">
           <div class="result-card-premium" id="trackCard">
             <div class="cover-wrapper-lux">
@@ -86,14 +85,14 @@
               <span class="track-tag-lux" id="trackMeta">Duration: --:--</span>
             </div>
             
-            <!-- Real-time Circular progress Action panel -->
+          
             <div class="download-action-group">
               <button id="downloadBtn" class="btn-download-premium">
                 <i data-lucide="download" style="width: 18px; height: 18px;"></i>
                 <span>Download MP3</span>
               </button>
               
-              <!-- Premium circular loader SVG -->
+            
               <div class="progress-ring-container" id="circleProgressContainer">
                 <svg class="progress-ring" width="44" height="44">
                   <circle
@@ -114,20 +113,20 @@
       </div>
     </div>
 
-    <!-- Right Sidebar Library & Active Queues Column -->
+    
     <div class="dashboard-side-layout">
-      <!-- Active downloading queue panel (visible only when download is happening) -->
+    
       <div class="side-card" id="queueCard" style="display: none;">
         <div class="queue-title">
           <i data-lucide="radio" style="color: var(--spotify-green); width: 18px; height: 18px;"></i>
           <span>Active Downloads</span>
         </div>
         <div class="queue-container" id="queueContainer" style="display: flex;">
-          <!-- Queue Item Template injected by JavaScript -->
+        
         </div>
       </div>
 
-      <!-- General Downloaded Library Panel -->
+    
       <div class="side-card">
         <h2 class="side-card-title">
           <i data-lucide="library" style="color: var(--primary-glow); width: 22px; height: 22px;"></i>
@@ -145,12 +144,12 @@
     </div>
   </main>
 
-  <!-- Hardcoded API Mode Active -->
 
-  <!-- Toast notifications box -->
+
+ 
   <div class="toast-container" id="toastContainer"></div>
 
-  <!-- Main JavaScript File -->
+
   <script src="app.js?v=2.1"></script>
 </body>
 </html>
